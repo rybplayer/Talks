@@ -1,0 +1,528 @@
+\documentclass[12pt]{article}
+\usepackage{ryblatex}
+\usepackage{extramarks}
+
+\title{SUMS Proofs Workshop: Winter 2026}
+\author{}
+\date{\today}
+
+% Comment out to add in solutions.
+% \usepackage{environ}
+% \RenewEnviron{proof}{}
+
+% Uncomment to add space between problems.
+% \usepackage{etoolbox}
+% \usepackage{needspace}
+% \newlength{\problemsep}
+% \setlength{\problemsep}{16\baselineskip}
+% \AtBeginEnvironment{problem}{\Needspace*{16\baselineskip}}
+% \AtEndEnvironment{problem}{\par\vspace{\problemsep}}
+
+\begin{document}
+
+\section*{SUMS Proofs Workshop: Winter 2026 Solutions}
+
+Note: Problems marked with (*) are difficult. (**) indicates \textit{very difficult}.
+
+\subsection*{Problems from Fall's Workshop}
+
+\begin{problem}
+Show that $1^2+2^2+3^2+\cdots+n^2 = \dfrac{n(n+1)(2n+1)}{6}$ for every $n \in \Z^+$.
+
+\begin{proof}
+Base case $n=1$: $1^2 = 1 = \frac{1\cdot2\cdot3}{6}$. Assume true for $n-1$. Then
+\[
+    \sum_{k=1}^n k^2 = \frac{(n-1)n(2n-1)}{6} + n^2
+    = \frac{2n^3+3n^2+n}{6} = \frac{n(n+1)(2n+1)}{6},
+\]
+completing the induction.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Prove that if $x$ and $y$ are real numbers, then $\text{max}(x, y) + \text{min}(x, y) = x + y$.
+
+\begin{proof}
+There are two cases.
+
+\textbf{Case 1:} \(x\le y\).  
+Then \(\max(x,y)=y\) and \(\min(x,y)=x\), so
+\[
+\max(x,y)+\min(x,y)=y+x=x+y.
+\]
+\textbf{Case 2:} \(y< x\).  
+Then \(\max(x,y)=x\) and \(\min(x,y)=y\), so
+\[
+\max(x,y)+\min(x,y)=x+y.
+\]
+In both cases the sum equals \(x+y\), establishing the identity.
+\end{proof}    
+\end{problem}
+
+\begin{problem}
+(*) Assume that the following statement is true: if Micah dislikes pineapple pizza then he likes pineapple pizza. Does he like pineapple pizza?
+
+\begin{proof}
+Let
+\[
+    p:\ \text{Micah dislikes pineapple pizza}
+\]
+The hypothesis is $p\Rightarrow \neg p$. Then we can construct the following truth table:
+\begin{center}
+    \begin{tabular}{c | c | c }
+        p & $\lnot p$ & $p \Rightarrow \lnot p$ \\
+        \hline
+        T & T & T \\
+        F & F & T \\
+        F & T & T
+    \end{tabular}
+\end{center}
+
+
+Constructing the truth table shows the only way $p\Rightarrow \neg p$ can hold is when $p$ is false (otherwise $p$ and $\neg p$ would both be true or both false, impossible). Thus $p$ is false, so $\neg p$ is true, i.e. Micah likes pineapple pizza.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+\label{Fibonacci-sum}
+(**) The \emph{Fibonacci sequence} is defined by $F_0 = 0$, $F_1 = 1$, and
+\begin{align*}
+    F_n = F_{n-1} + F_{n-2}
+\end{align*}
+for $n \geq 2$. Show that every positive integer can be written as the sum of distinct Fibonacci numbers. Distinct means the sum cannot have repeated values; For example, $2 = 1 + 1$ is not a valid sum even though $F_1 = 1$ and $F_2 = 1$. But $2 = 2 = F_3$ is.
+
+\begin{proof}
+We proceed by strong induction. The base cases $1 = F_1$ and $2 = F_3$ hold. Suppose for induction that all positive integers less than $n > 2$ can be written as the sum of distinct Fibonacci numbers. \medskip 
+
+We show this for $n$. Let $F_k$ be the largest Fibonacci number with $F_k \leq n$. Then $F_{k+1} > n \geq F_k$. Letting $r := n - F_k$,
+\begin{align*}
+    0 \leq r < F_{k + 1} - F_k = F_{k-1} < n.
+\end{align*}
+If $r = 0$, $n = F_k$ and we are done. Else, $r < n$ so by the inductive hypothesis, $r$ can be expressed as the sum of distinct Fibonacci numbers, none of which can be $F_k$ as $r < F_{k-1}$. Thus $n = F_k + r$ shows $n$ can be written as the sum of distinct Fibonacci numbers. \medskip
+
+Thus by induction the statement holds for $n \in \N \setminus \{0\}$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+(**) What is the minimum number of breaks to break up a chocolate bar made of $m \times n$ little squares into those $mn$ little squares?
+
+\begin{proof}
+Every time you break a chocolate bar, you increase the number of pieces by 1. Then you need $mn -1$ breaks no matter what.
+\end{proof}
+\end{problem}
+
+\subsection*{Starter Problems}
+
+\begin{problem}
+Consider the following statement: For all positive integers $x$, $x^2 + x + 41$ is prime. Is the statement true or false? Prove it.
+
+\begin{proof}
+It is false. The counterexample $x = 41$ gives $x^2 + x + 41 = 41(41 + 1 + 1)$ which is clearly not prime.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Prove that no integer $n$, when squared, ends in $2$, $3$ ,$7$, or $8$.
+\begin{proof}
+The last digit of $n^2$ depends only on the last digit of $n$. Checking $0$ through $9$ gives squares ending in
+\[
+0,1,4,9,6,5,6,9,4,1.
+\]
+Thus a square can only end in $0,1,4,5,6,$ or $9$, never in $2,3,7,$ or $8$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Let $n! = n \times (n-1) \times (n-2) \times \cdots \times 2 \times 1$. Prove that $n!$ is divisible by $2^{n/2}$ for all even positive integers $n$.
+\begin{proof}
+If $n$ is even, then among the factors $1,2,\ldots,n$ there are exactly $n/2$ even numbers. Each even factor contributes at least one factor of $2$, so the product $n!$ has at least $n/2$ factors of $2$. Hence $2^{n/2}$ divides $n!$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Prove that if $a$ divides $b$ and $b$ divides $a$, then $|a| = |b|$. Is it true that $a = b$ too? Why or why not?
+\begin{proof}
+If $a\mid b$ and $b\mid a$, then there are integers $m,n$ with $b=am$ and $a=bn$. Substituting gives $a=amn$, so $a(1-mn)=0$. If $a=0$, then $b=0$ and $|a|=|b|$. If $a\ne 0$, then $mn=1$, so $m$ and $n$ are $1$ or $-1$. Hence $b=\pm a$ and $|a|=|b|$. It is not always true that $a=b$; for example $a=2$ and $b=-2$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Prove that if $A \subseteq B$ then $B^c \subseteq A^c$, where $A^c$ is the complement of $A$.
+\begin{proof}
+Let $x\in B^c$. Then $x\notin B$. Since $A\subseteq B$, $x\notin A$. Hence $x\in A^c$, so $B^c\subseteq A^c$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Show that in any group of $n$ people, where each person is friends with some of the other $n-1$, there are always two people with the same number of friends.
+\begin{proof}
+Each person has between $0$ and $n-1$ friends. It is impossible to have someone with $0$ friends and someone with $n-1$ friends at the same time, since if a person is friends with everyone then no one has $0$ friends. Thus there are at most $n-1$ possible friend counts among $n$ people. By the pigeonhole principle, two people share the same number of friends.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+You have a pile of $100$ coins. Every move, you may replace a pile of size $n$ with two piles of $a$ and $b$ coins, where $a + b = n$ and $a \neq b$. Can you end with 100 piles of $1$ coin? Prove or disprove.
+\begin{proof}
+We show this is impossible for any $n>1$ by strong induction on $n$. For $n=2$, the only split is $1+1$, which is not allowed. Assume no pile of size $m$ with $2\le m<n$ can be split into all $1$'s using only unequal splits. For a pile of size $n$, any allowed split gives $a+b=n$ with $a\ne b$ and $1\le a,b<n$. If $a=1$ then $b=n-1>1$, and if $a>1$ then both parts exceed $1$. In all cases at least one part is a pile of size $m$ with $2\le m<n$, which cannot be fully split into $1$'s by the induction hypothesis. Hence no pile of size $n>1$ can be reduced to all $1$'s. In particular, starting from $100$ it is impossible.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Let $\text{gcd}(a,b)$ denote the greatest common divisor between integers $a$ and $b$. Prove that $\gcd(a,b) = \gcd(a,b-a)$ for all integers $a$ and $b$.
+\begin{proof}
+Let $d=\gcd(a,b)$. Then $d\mid a$ and $d\mid b$, so $d\mid (b-a)$. Hence $d$ is a common divisor of $a$ and $b-a$. Conversely, if $c$ divides both $a$ and $b-a$, then $c$ divides $(b-a)+a=b$. Thus the common divisors of $(a,b)$ and of $(a,b-a)$ are the same, so their greatest common divisors are equal.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Show that $2 + 4 + 6 + \cdots + 2n = n(n+1)$. Can you do it without induction?
+\begin{proof}
+\[
+2+4+\cdots+2n=2(1+2+\cdots+n)=2\cdot\frac{n(n+1)}{2}=n(n+1).
+\]
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Prove that if $A \times B = A \times C$ and $A \neq \emptyset$, then $B = C$.
+\begin{proof}
+Choose $a\in A$. If $b\in B$, then $(a,b)\in A\times B=A\times C$, so $b\in C$. Thus $B\subseteq C$. The same argument with $C$ and $B$ swapped shows $C\subseteq B$, so $B=C$.
+\end{proof}
+\end{problem}
+
+\subsection*{Harder Problems}
+
+\begin{problem}
+(*) Prove that if $2^n - 1$ is prime, then $n$ is prime. Hint:
+\begin{align*}
+    2^{ab} - 1 = (2^a - 1)(2^{a(b-1)} + 2^{a(b-2)} + \cdots + 1).
+\end{align*}
+\begin{proof}
+We prove the contrapositive. If $n$ is composite, write $n=ab$ with $a,b>1$. Then
+\[
+2^n-1=2^{ab}-1=(2^a)^b-1=(2^a-1)\left(2^{a(b-1)}+2^{a(b-2)}+\cdots+1\right),
+\]
+so $2^a-1$ is a nontrivial divisor of $2^n-1$. Hence $2^n-1$ is not prime. Therefore, if $2^n-1$ is prime, then $n$ is prime.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+(*) Prove that if $a \equiv b \pmod{m}$ then $a^k \equiv b^k \pmod{m}$ for all positive integer $k$.
+\begin{proof}
+We use induction on $k$. For $k=1$, $a\equiv b\pmod m$ is given. Assume $a^k\equiv b^k\pmod m$. Then
+\[
+a^{k+1}-b^{k+1}=a\cdot a^k-b\cdot b^k=a(a^k-b^k)+(a-b)b^k.
+\]
+Both terms are divisible by $m$, since $m\mid(a^k-b^k)$ and $m\mid(a-b)$. Hence $m\mid(a^{k+1}-b^{k+1})$, so $a^{k+1}\equiv b^{k+1}\pmod m$. By induction, the statement holds for all $k$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+(*) Prove $\sqrt{6}$ is irrational.
+\begin{proof}
+Suppose $\sqrt6=\frac{a}{b}$ with integers $a,b$ in lowest terms and $b\ne 0$. Then $6b^2=a^2$, so $2\mid a$ and $3\mid a$, hence $6\mid a$. Write $a=6k$. Then $6b^2=36k^2$, so $b^2=6k^2$, which implies $6\mid b$. This contradicts that $a/b$ is in lowest terms. Therefore $\sqrt6$ is irrational.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+(*) Show that every squared integer can be written as the sum of consecutive odd numbers.
+\begin{proof}
+We claim $n^2=1+3+5+\cdots+(2n-1)$. For $n=1$ this is true. If it holds for $n$, then
+\[
+(n+1)^2=n^2+2n+1=(1+3+\cdots+(2n-1))+(2n+1),
+\]
+so it holds for $n+1$. Thus every square is a sum of consecutive odd numbers.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+(*) Start with the number $0$. Every move, you can add $3$ or $5$ to it. Show that, given enough moves, you can make every integer $\geq 8$, starting from $0$ every time.
+\begin{proof}
+We can reach $8=3+5$, $9=3+3+3$, and $10=5+5$. For any integer $n\ge 8$, if we can reach $n$, then we can reach $n+3$ by adding $3$. Hence all integers $n\ge 8$ are reachable.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+\label{powers-of-two-sum}
+(*) Prove that every positive number can be written as the sum of distinct powers of $2$ (including $2^0 = 1$).
+\begin{proof}
+We use strong induction on $n\ge 1$. The statement holds for $n=1=2^0$. Assume it holds for all integers less than $n$. Let $2^k\le n<2^{k+1}$. Then $n=2^k+r$ with $0\le r<2^k$. If $r=0$ we are done. Otherwise, by the induction hypothesis $r$ is a sum of distinct powers of $2$, none of which equals $2^k$ since $r<2^k$. Thus $n$ is a sum of distinct powers of $2$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+(*) Ten lamps are arranged in a line, all turned off. You may pick a lamp to toggle between on and off, but it will also toggle its immediate neighbors. Is it possible to only have the $5$th lamp from the left on? Prove or disprove.
+\begin{proof}
+Let $x_i\in\{0,1\}$ indicate whether we toggle lamp $i$ an odd number of times. The final state of lamp $i$ is $x_{i-1}+x_i+x_{i+1}$ mod $2$, with missing neighbors omitted. We want only lamp $5$ on, so we solve
+\[
+\begin{aligned}
+x_1+x_2&=0\\
+x_1+x_2+x_3&=0\\
+x_2+x_3+x_4&=0\\
+x_3+x_4+x_5&=0\\
+x_4+x_5+x_6&=1\\
+x_5+x_6+x_7&=0\\
+x_6+x_7+x_8&=0\\
+x_7+x_8+x_9&=0\\
+x_8+x_9+x_{10}&=0\\
+x_9+x_{10}&=0.
+\end{aligned}
+\]
+Solving in $\mathbb{Z}_2$ gives $x_6=x_7=x_9=x_{10}=1$ and all other $x_i=0$. Thus toggling lamps $6,7,9,10$ once each produces exactly lamp $5$ on. So it is possible.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+(*) Prove that $n^5 - n$ is divisible by $30$ for every positive integer $n$. Hint: You may use Fermat's little theorem: If $p$ is prime, for any integer $a$ we have $p \divides a^p - a$.
+\begin{proof}
+We show divisibility by $2,3,$ and $5$. If $n$ is even, then $n^5-n$ is even. If $n$ is odd, then $n^5-n=n(n^4-1)$ is even since $n^4-1$ is even. So $2$ divides $n^5-n$. Modulo $3$, we have $n^3\equiv n$, so $n^5=n^3 n^2\equiv n n^2=n^3\equiv n$, hence $3$ divides $n^5-n$. Modulo $5$, by Fermat's little theorem $n^5\equiv n$, so $5$ divides $n^5-n$. Since $2,3,5$ are pairwise coprime, $30$ divides $n^5-n$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+(*) Prove that, among any $n+1$ integers, not necessarily consecutive, at least two have a difference divisible by $n$.
+\begin{proof}
+Consider the $n$ possible remainders modulo $n$. Among $n+1$ integers, two share the same remainder. Their difference is divisible by $n$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+(*) Show that $1 + 3 + 9 + \ldots + 3^{n-1} = \frac{3^n - 1}{2}$ without induction.
+\begin{proof}
+Let $S=1+3+3^2+\cdots+3^{n-1}$. Then $3S=3+3^2+\cdots+3^n$. Subtracting gives $3S-S=3^n-1$, so $S=\frac{3^n-1}{2}$.
+\end{proof}
+\end{problem}
+
+\subsection*{Challenging Problems}
+
+\begin{problem}
+(**) Prove that any integer sequence of length $n$ contains a subsequence (i.e. a consecutive subset) with sum divisible by $n$.
+\begin{proof}
+Let the sequence be $a_1,\ldots,a_n$ and define partial sums $s_k=a_1+\cdots+a_k$ for $1\le k\le n$. If any $s_k$ is divisible by $n$, the subsequence $a_1+\cdots+a_k$ works. Otherwise, the $n$ numbers $s_1,\ldots,s_n$ have remainders $1,\ldots,n-1$ modulo $n$, so two must share a remainder. Then $s_j-s_i$ is divisible by $n$ for some $i<j$, and the subsequence $a_{i+1}+\cdots+a_j$ has sum divisible by $n$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+(**) Prove that the decimal expansion of a rational number will eventually repeat.
+\begin{proof}
+Let $x=\frac{p}{q}$ with integers $p$ and $q>0$. Long division produces remainders $r_k$ with $0\le r_k<q$, and each next digit is determined by $10r_k/q$. There are only $q$ possible remainders, so some remainder repeats. From the first repetition onward, the digits repeat, giving an eventually repeating decimal expansion.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+(**) Prove that there is no smallest positive rational number.
+\begin{proof}
+If $r>0$ is rational, then $\frac{r}{2}$ is also rational and satisfies $0<\frac{r}{2}<r$. Thus no positive rational can be the smallest.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+(**) Prove that for all real numbers $x_1, \ldots, x_n$, and for all positive integers $n$, then
+\begin{align*}
+    (x_1 + \cdots + x_n)^2 \leq n (x_1^2 + \cdots + x_n^2).
+\end{align*}
+\begin{proof}
+We use the inequality
+\[
+0\le \sum_{i<j}(x_i-x_j)^2.
+\]
+Expanding gives
+\[
+0\le (n-1)\sum_{i=1}^n x_i^2-2\sum_{i<j}x_ix_j.
+\]
+Thus
+\[
+\left(\sum_{i=1}^n x_i\right)^2=\sum_{i=1}^n x_i^2+2\sum_{i<j}x_ix_j\le n\sum_{i=1}^n x_i^2,
+\]
+which is the desired inequality.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+(**) Let $\alpha\in\mathbb{R}$ such that $\alpha+\frac{1}{\alpha}\in\mathbb{Z}$. Prove that $\alpha^n+\frac{1}{\alpha^n}\in\mathbb{Z}$ for any $n\in\mathbb{N}\cup\{0\}$.
+\begin{proof}
+Let $t=\alpha+\frac{1}{\alpha}\in\mathbb{Z}$ and define $s_n=\alpha^n+\frac{1}{\alpha^n}$. Then $s_0=2$ and $s_1=t$. Also,
+\[
+s_{n+1}=\alpha^{n+1}+\frac{1}{\alpha^{n+1}}=t\left(\alpha^n+\frac{1}{\alpha^n}\right)-\left(\alpha^{n-1}+\frac{1}{\alpha^{n-1}}\right)=ts_n-s_{n-1}.
+\]
+By induction on $n$, $s_n\in\mathbb{Z}$ for all $n\in\mathbb{N}\cup\{0\}$.
+\end{proof}
+\end{problem}
+
+\subsection*{Some AM-GM Identities}
+
+Please do the problems in this section in order.
+
+\begin{problem}
+(**) This is known as the inequality of arithmetic and geometric means (AM-GM). For all positive real numbers $a$ and $b$,
+\[
+\frac{a+b}{2}\ge \sqrt{ab}.
+\]
+Hint: $(\sqrt{a} - \sqrt{b})^2$.
+\begin{proof}
+Since $a,b>0$, we have $(\sqrt a-\sqrt b)^2\ge 0$. Expanding gives $a+b-2\sqrt{ab}\ge 0$, so $\frac{a+b}{2}\ge \sqrt{ab}$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Prove that for real $a$, $b$,
+\begin{align*}
+    a^4 + b^4 \geq 2a^2b^2.
+\end{align*}
+Hint: AM-GM
+\begin{proof}
+By AM-GM,
+\[
+a^4+b^4\ge 2\sqrt{a^4b^4}=2a^2b^2.
+\]
+\end{proof}
+\end{problem}
+
+\begin{problem}
+Prove that if $a,b,c > 0$ are real numbers, then 
+\begin{align*}
+    (a + b)(b + c)(c + a) \geq 8abc.
+\end{align*}
+Hint: AM-GM.
+\begin{proof}
+By AM-GM, $a+b\ge 2\sqrt{ab}$, $b+c\ge 2\sqrt{bc}$, and $c+a\ge 2\sqrt{ca}$. Multiplying gives
+\[
+(a+b)(b+c)(c+a)\ge 8\sqrt{a^2b^2c^2}=8abc.
+\]
+\end{proof}
+\end{problem}
+
+\begin{problem}
+(*) Prove that if $a,b,c > 0$ are real numbers, then 
+\begin{align*}
+    \frac{a}{b} + \frac{b}{c} + \frac{c}{a} \geq 3.
+\end{align*}
+Hint: AM-GM.
+\begin{proof}
+By AM-GM, $\frac{a}{b}+\frac{b}{a}\ge 2$, and similarly for cyclic pairs. Summing the three inequalities gives
+\[
+2\left(\frac{a}{b}+\frac{b}{c}+\frac{c}{a}\right)\ge 6,
+\]
+so $\frac{a}{b}+\frac{b}{c}+\frac{c}{a}\ge 3$.
+\end{proof}
+\end{problem}  
+
+\begin{problem}
+(*) Prove that if $a,b,c > 0$ are real numbers, then 
+\begin{align*}
+    (a + b + c) \left(\frac{1}{a} + \frac{1}{b} + \frac{1}{c} \right) \geq 9.
+\end{align*}
+Hint: AM-GM
+\begin{proof}
+\[
+(a+b+c)\left(\frac1a+\frac1b+\frac1c\right)
+=3+\left(\frac{a}{b}+\frac{b}{a}\right)+\left(\frac{b}{c}+\frac{c}{b}\right)+\left(\frac{c}{a}+\frac{a}{c}\right).
+\]
+By AM-GM, each pair is at least $2$, so the total is at least $3+2+2+2=9$.
+\end{proof}
+\end{problem}  
+
+\begin{problem}
+(*) Prove that if $a,b,c > 0$ are real numbers, then 
+\begin{align*}
+    \frac{a}{a+b} + \frac{b}{b+c} + \frac{c}{c+a} \geq 1.
+\end{align*}
+Hint: Do not use AM-GM.
+\begin{proof}
+Since $a+b\le a+b+c$, we have $\frac{a}{a+b}\ge \frac{a}{a+b+c}$, and similarly for the other terms. Therefore
+\[
+\frac{a}{a+b}+\frac{b}{b+c}+\frac{c}{c+a}\ge \frac{a+b+c}{a+b+c}=1.
+\]
+We do not need AM-GM.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+(**) Given $a + b = 1$, prove
+\begin{align*}
+    ab \leq \frac{1}{4} \text{ and } a^2 + b^2 \geq \frac{1}{2}. 
+\end{align*}
+Hint: Use AM-GM on $a^2$ and $b^2$.
+\begin{proof}
+By AM-GM on $a^2$ and $b^2$,
+\[
+\frac{a^2+b^2}{2}\ge \sqrt{a^2b^2}=|ab|,
+\]
+so $a^2+b^2\ge 2|ab|$. Since $a+b=1$,
+\[
+1=(a+b)^2=a^2+b^2+2ab\ge 2|ab|+2ab.
+\]
+If $ab\ge 0$, then $1\ge 4ab$, so $ab\le \frac14$; if $ab\le 0$, then $ab\le \frac14$ holds. Then
+\[
+a^2+b^2=1-2ab\ge 1-2\cdot\frac14=\frac12.
+\]
+\end{proof}
+\end{problem}
+
+\begin{problem}
+(**) Given positive real numbers $a,b,c$ with $abc = 1$, prove
+\begin{align*}
+    a + b + c \geq 3.
+\end{align*}
+Hint / Challenge: Use only 2-variable AM-GM.
+\begin{proof}
+Let $w=(abc)^{1/3}=1$. By the $2$-variable AM-GM,
+\[
+\frac{a+b}{2}\ge \sqrt{ab},\qquad \frac{c+w}{2}\ge \sqrt{cw}.
+\]
+Applying AM-GM again to these two averages gives
+\[
+\frac{a+b+c+w}{4}\ge \sqrt{\sqrt{ab}\sqrt{cw}}=(abcw)^{1/4}=1.
+\]
+Thus $a+b+c\ge 3$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+(****) Prove that for positive real numbers $x_1,\dots,x_n$,
+\[
+\frac{x_1+\cdots+x_n}{n}\ge \sqrt[n]{x_1x_2\cdots x_n}.
+\]
+Hint: Do Problems \ref{Fibonacci-sum} and \ref{powers-of-two-sum} first. Can you combine the two proofs?
+\begin{proof}
+First prove the case $n=2^k$ by induction on $k$ using only the $2$-variable AM-GM. The case $k=1$ is $n=2$. If the statement holds for $2^k$, apply it to the pairs
+\[
+\frac{x_1+x_2}{2},\ \frac{x_3+x_4}{2},\ \dots,\ \frac{x_{2^{k+1}-1}+x_{2^{k+1}}}{2},
+\]
+to get
+\[
+\frac{x_1+\cdots+x_{2^{k+1}}}{2^{k+1}}\ge \sqrt[2^{k+1}]{x_1x_2\cdots x_{2^{k+1}}}.
+\]
+Now let $n$ be arbitrary. Let $m=2^k\ge n$ and set $y_i=x_i$ for $1\le i\le n$ and $y_i=t$ for $n<i\le m$, where $t=\sqrt[n]{x_1\cdots x_n}$. Then $\sqrt[m]{y_1\cdots y_m}=t$. Applying the $m$-variable case gives
+\[
+\frac{x_1+\cdots+x_n+(m-n)t}{m}\ge t,
+\]
+so $\frac{x_1+\cdots+x_n}{n}\ge t$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+(**) Prove that for positive real $a$, $b$,
+\begin{align*}
+    \frac{a^3}{b^2} + \frac{b^3}{a^2} \geq a + b.
+\end{align*}
+Hint: Apply AM-GM on three numbers.
+\begin{proof}
+Apply AM-GM to the three positive numbers $\frac{a^3}{b^2}, b, b$:
+\[
+\frac{\frac{a^3}{b^2}+b+b}{3}\ge \sqrt[3]{\frac{a^3}{b^2}\cdot b\cdot b}=a,
+\]
+so $\frac{a^3}{b^2}+2b\ge 3a$. Similarly,
+\[
+\frac{\frac{b^3}{a^2}+a+a}{3}\ge \sqrt[3]{\frac{b^3}{a^2}\cdot a\cdot a}=b,
+\]
+so $\frac{b^3}{a^2}+2a\ge 3b$. Adding gives
+\[
+\frac{a^3}{b^2}+\frac{b^3}{a^2}\ge a+b,
+\]
+the desired inequality.
+\end{proof}
+\end{problem}
+
+\end{document}
